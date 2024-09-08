@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation
 import './ItineraryPage.css'; // Create this new CSS file
 
+
 const ItineraryPage = () => {
   const location = useLocation();
   const { itinerary } = location.state || {};

@@ -144,3 +144,10 @@ h1 {
     white-space: pre-wrap; /* Allow wrapping of long lines */
     color: #fff; /* White text color for readability */
   }
+  
+  .MuiTooltip-tooltip {
+    font-size: 0.75rem;
+    background-color: #000;
+    color: #fff;
+  }
+  

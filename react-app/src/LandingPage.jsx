@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import langingImage from './assets/landingPhoto.jpeg';
+import CustomizedSlider from './AirbnbSlider';
 
 const LandingPage = () => {
-  const [step, setStep] = useState(1); // Step tracker
+  const [step, setStep] = useState(1);
   const [destination, setDestination] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [budget, setBudget] = useState('');
+  const [budget, setBudget] = useState([300, 700]);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleNextStep = () => {
     if (step === 1 && destination) {
@@ -28,39 +29,10 @@ const LandingPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'destination') setDestination(value);
-    if (name === 'budget') setBudget(value);
   };
 
-  /* const handleGenerateItinerary = async () => {
-    try {
-      const response = await fetch('http://your-server-url.com/api/itinerary', { // Replace with your server URL
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          destination,
-          startDate,
-          endDate,
-          budget,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-
-      // Redirect to the ItineraryPage with data
-      navigate('/itinerary', { state: { itinerary: data } });
-    } catch (error) {
-      setError('Error generating itinerary. Please try again.');
-      console.error('Error generating itinerary:', error);
-    }
-  }; */
   const handleGenerateItinerary = () => {
-    // Dummy data to simulate API response
+    console.log('Generating itinerary...'); // Debugging line
     const dummyData = {
       destination,
       startDate,
@@ -120,14 +92,12 @@ const LandingPage = () => {
               </div>
             )}
             {step === 3 && (
-              <Form.Control
-                type="text"
-                placeholder="Enter your budget"
-                value={budget}
-                onChange={handleInputChange}
-                name="budget"
-                className="input-box"
-              />
+              <div className="budget-slider-container">
+                <CustomizedSlider
+                  value={budget}
+                  onChange={(_, newValue) => setBudget(newValue)}
+                />
+              </div>
             )}
             <Button 
               variant="primary" 
