@@ -1,0 +1,19 @@
+.itinerary-page {
+    padding: 20px;
+    background-color: #242424; /* Match the theme */
+    color: rgba(255, 255, 255, 0.87); /* Ensure text color matches theme */
+    text-align: center;
+  }
+  
+  .itinerary-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .itinerary-page pre {
+    background-color: #333; /* Match background color */
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff; /* White text color for readability */
+    white-space: pre-wrap; /* Allow wrapping of long lines */
+  }

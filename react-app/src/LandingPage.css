@@ -99,3 +99,48 @@ h1 {
 .generate-button:focus {
     outline: none;
 }
+
+.date-range-picker {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between start and end date pickers */
+    width: 100%; /* Make the date range picker take up full width */
+    max-width: 600px; /* Ensure it doesn't exceed a certain width */
+  }
+  
+  .date-picker-input {
+    flex-grow: 1; /* Allow the date picker input to take up available space */
+    border-radius: 5px;
+    padding: 12px; /* Add padding for better spacing */
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border color */
+    background-color: #333; /* Match the background color to the theme */
+    color: #fff; /* White text color */
+  }
+  
+  .date-picker-input::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Slightly lighter placeholder text */
+  }
+  
+  .error-message {
+    color: #ff6b6b; /* Red color for error messages */
+    margin-top: 10px;
+  }
+  
+  .itinerary-result {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.87); /* Ensure text color matches theme */
+  }
+  
+  .itinerary-result h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .itinerary-result pre {
+    background-color: #333; /* Match the background color */
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Allow wrapping of long lines */
+    color: #fff; /* White text color for readability */
+  }
