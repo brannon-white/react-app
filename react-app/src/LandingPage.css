@@ -1,0 +1,101 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #242424;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.87);
+    text-align: center;
+}
+
+.image-container {
+    width: 95%;
+    height: 65vh;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    /* Transition for smooth effect */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards; /* Changed duration to 1s */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: column; /* Stack fields vertically */
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input and button */
+    width: 100%;
+    max-width: 600px; /* Adjust max width as needed */
+}
+
+.input-box {
+    flex-grow: 1;
+    width: 100%; /* Make input box take up full width of its container */
+    height: 50px; /* Set height to match button height */
+    border-radius: 5px;
+    padding: 0 10px; /* Adjust padding to match button */
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.generate-button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 15px; /* Space between input and button */
+    height: 50px; /* Set height to match input box height */
+}
+
+.generate-button:hover {
+    background-color: #0056b3;
+}
+
+.generate-button:focus {
+    outline: none;
+}

@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import './LandingPage.css';
+import langingImage from './assets/landingPhoto.jpeg';
 
-function App() {
-  const [count, setCount] = useState(0)
+const LandingPage = () => {
+  const [step, setStep] = useState(1); // Step tracker
+  const [destination, setDestination] = useState('');
+  const [dateRange, setDateRange] = useState('');
+  const [budget, setBudget] = useState('');
+
+  const handleNextStep = () => {
+    if (step === 1 && destination) {
+      setStep(2);
+    } else if (step === 2 && dateRange) {
+      setStep(3);
+    } else if (step === 3 && budget) {
+      // Handle itinerary generation here
+      console.log('Generating itinerary...');
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'destination') setDestination(value);
+    if (name === 'dateRange') setDateRange(value);
+    if (name === 'budget') setBudget(value);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="landing-page">
+      {/* Image Container */}
+      <div className="image-container">
+        <img
+          src={langingImage}
+          alt="Landing"
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      
+      {/* Content */}
+      <div className="content">
+        <h1 key={step}>
+          {step === 1 ? "What's your destination?" : step === 2 ? "When will you be there?" : "What's your budget?"}
+        </h1>
+        <Form className="form-inline">
+          <div className="form-group-container">
+            <Form.Control
+              type="text"
+              placeholder={step === 1 ? "Enter your destination" : step === 2 ? "Enter date range" : "Enter your budget"}
+              value={step === 1 ? destination : step === 2 ? dateRange : budget}
+              onChange={handleInputChange}
+              name={step === 1 ? 'destination' : step === 2 ? 'dateRange' : 'budget'}
+              className="input-box"
+            />
+            <Button 
+              variant="primary" 
+              className="generate-button" 
+              onClick={handleNextStep}
+            >
+              {step === 3 ? "Generate Itinerary" : "Next"}
+            </Button>
+          </div>
+        </Form>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default LandingPage;
