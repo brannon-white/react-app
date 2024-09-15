@@ -31,18 +31,48 @@ const LandingPage = () => {
     if (name === 'destination') setDestination(value);
   };
 
-  const handleGenerateItinerary = () => {
+  const handleGenerateItinerary = async () => {
     console.log('Generating itinerary...'); // Debugging line
-    const dummyData = {
-      destination,
-      startDate,
-      endDate,
-      budget,
-      itinerary: 'Your generated itinerary will appear here.'
-    };
+    
+    try {
+      // Convert startDate and endDate to string format (ISO format)
+      const formattedStartDate = startDate ? startDate.toISOString().split('T')[0] : '';
+      const formattedEndDate = endDate ? endDate.toISOString().split('T')[0] : '';
   
-    // Navigate to the ItineraryPage with dummy data
-    navigate('/itinerary', { state: { itinerary: dummyData } });
+      // If the budget is an array, select a single value or use a default value
+      const budgetValue = budget[0] || 0; // Adjust based on how you want to handle the budget array
+  
+      // Prepare the data to send to the API
+      const requestData = {
+        destination,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        budget: budgetValue
+      };
+      
+      // Call your API (replace 'http://localhost:5209/generate-itinerary' with your actual API URL)
+      const response = await fetch('http://localhost:5209/generate-itinerary', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to generate itinerary');
+      }
+      
+      // Assuming the API response contains the generated itinerary
+      const itineraryData = await response.json();
+      
+      // Navigate to the ItineraryPage with the response data
+      navigate('/itinerary', { state: { itinerary: itineraryData } });
+      
+    } catch (error) {
+      console.error('Error generating itinerary:', error);
+      setError('Failed to generate itinerary. Please try again.');
+    }
   };
 
   return (
